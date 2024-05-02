@@ -14,7 +14,10 @@ export default defineConfig({
 			theme: 'material-theme-palenight',
 			wrap: true
 		}
-	},
+	}, i18n: {
+		defaultLocale: "en",
+		locales: ["hn", "en"],
+	  },
 	integrations: [
 		mdx({
 			syntaxHighlight: 'shiki',

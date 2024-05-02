@@ -7,8 +7,13 @@ import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
 import ToggleLanguage from './ToggleLanguage.astro'
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
+// const {  currentLang } = Astro.props
+const {  currentLang } = Astro.props
 
+// console.log(currentLang,"SDSDSDS");
+const Lang=currentLang || 'en';
 // ADD YOUR SOCIAL NETWORKS HERE
 // const SOCIALNETWORKS = [
 // 	{
@@ -48,10 +53,10 @@ import ToggleLanguage from './ToggleLanguage.astro'
 				<div
 					class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
 				>
-					<HeaderLink href='/about' class='flex items-center gap-1 text-2xl md:text-base'>
+					<HeaderLink href={getRelativeLocaleUrl(Lang, "about")} class='flex items-center gap-1 text-2xl md:text-base'>
 						About
 					</HeaderLink><HeaderLink
-						href='/tags'
+					href={getRelativeLocaleUrl(Lang, "E-Mitra")}
 						class='flex items-center gap-1 text-2xl md:text-base'
 					>
 						E-Mitra
