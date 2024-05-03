@@ -6,7 +6,7 @@ export const getCategories = async () => {
 	return Array.from(categories)
 }
 
-export const getPosts = async (max?: number) => {
+export const getPosts = async (max?: number,lang?:String) => {
 	return (await getCollection('blog'))
 		.filter((post) => !post.data.draft)
 		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

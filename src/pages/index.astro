@@ -1,14 +1,6 @@
 ---
 import HomePage from '@/components/main/HomePage';
-import config from '../../astro.config.mjs';
-
-const languages = Object.keys(config);
-
-console.log(config.i18n?.locales);
-
 
 const currentLang=Astro.currentLocale;
-
-
 ---
 <HomePage currentLang={currentLang || 'hn'}></HomePage>;

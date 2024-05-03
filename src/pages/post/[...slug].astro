@@ -10,6 +10,11 @@ import SButton from '@/components/mdx/SButton'
 import Disqus from '@/components/Disqus'
 import { disqusConfig } from '@/data/disqus.config'
 
+
+const currentLang=Astro.currentLocale || 'en';
+console.log("currentLang",currentLang);
+
+
 const posts = await getCollection('blog')
 export async function getStaticPaths() {
 	const posts = await getPosts()
