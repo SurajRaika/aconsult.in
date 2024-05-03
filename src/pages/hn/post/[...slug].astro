@@ -12,7 +12,7 @@ import { disqusConfig } from '@/data/disqus.config'
 
 
 const currentLang=Astro.currentLocale || 'en';
-console.log("currentLang",currentLang);
+// console.log("currentLang",currentLang);
 
 
 const posts = await getCollection('blog')
@@ -43,7 +43,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 const disqusEnabled = disqusConfig.enabled
 ---
 
-<BlogPost
+<BlogPost currentLang={currentLang}
 	id={post.id}
 	data={post.data}
 	headings={headings}
