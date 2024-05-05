@@ -19,7 +19,9 @@ const posts = await getCollection('blog')
 export async function getStaticPaths() {
 	const posts = await getPosts()
 
-	return posts.map((post) => ({
+	return posts
+	.filter(post => post.slug.split('/').includes("hn"))
+.map((post) => ({
 		params: { slug: post.slug },
 		props: post
 	}))
