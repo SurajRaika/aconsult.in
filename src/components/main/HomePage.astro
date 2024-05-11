@@ -4,16 +4,17 @@ import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
-import { getRelativeLocaleUrl } from 'astro:i18n';
-
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { getLocaleFromUrl } from '../../i18n/utilities'
 
 const { currentLang } = Astro.props
 // defaultLocale is "es"
-const aboutURL = getRelativeLocaleUrl(currentLang, "about");
 
+const aboutURL = getRelativeLocaleUrl(currentLang, 'about')
 
 const MAX_POSTS = 8 // max number of posts to show on the home page
-const posts = await getPosts(MAX_POSTS)
+const posts = await getPosts(MAX_POSTS,currentLang)
+
 ---
 
 <BaseLayout currentLang={currentLang} title='Home'>

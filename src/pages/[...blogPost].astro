@@ -5,44 +5,53 @@ import Code from '@/components/mdx/Code'
 import ListRelatedPosts from '@/components/ListRelatedPosts'
 import Share from '@/components/Share'
 import TableOfContents from '@/components/TableOfContents'
-import { getPosts } from '@/utils'
+import { getRelatedPosts } from '@/utils'
 import SButton from '@/components/mdx/SButton'
 import Disqus from '@/components/Disqus'
 import { disqusConfig } from '@/data/disqus.config'
 
+import { locales } from '../i18n/i18n'
+import { getLocaleFromUrl } from '../i18n/utilities'
+// import Post from '@/layouts/Post.astro';
+import { getRelativePostPath } from '../utilities/getPostPath'
+import getPublishedPosts from '../utilities/getPublishedPosts'
 
-const currentLang=Astro.currentLocale || 'en';
-console.log("currentLang",currentLang);
-
-
-const posts = await getCollection('blog')
 export async function getStaticPaths() {
-	const posts = await getPosts()
+	const collection = 'blog'
+	const posts = await getPublishedPosts('', collection, '')
+	let postsToRender = []
 
-	return posts
-	.filter(post => post.slug.split('/').includes("hn"))
-.map((post) => ({
-		params: { slug: post.slug },
-		props: post
-	}))
+	for (let locale of locales) {
+		const localePosts = posts
+			.filter(function (entry) {
+				return getLocaleFromUrl(entry.slug) === locale
+			});
+			const FinalPosts=localePosts.map((post) => {
+				const relatedPost = getRelatedPosts(post, getLocaleFromUrl(post.slug), localePosts) // Assuming getRelatedPosts() returns the related post object
+				post.data.relatedPosts=relatedPost;
+				return {
+					params: { blogPost: `${getRelativePostPath(locale, collection, post.slug, false)}` },
+					props: post
+
+				}
+			})
+		postsToRender.push(...FinalPosts)
+	}
+	return postsToRender
 }
 type Props = CollectionEntry<'blog'>
 
-const post = Astro.props
-const MAX_POSTS = 3
-const getRelatedPosts = (post: Props) => {
-	const lowercaseTags = post.data.tags.map((tag) => tag.toLowerCase())
-	const relatedPosts = posts.filter(
-		(p) => p.slug !== post.slug && p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase()))
-	)
-	return relatedPosts.slice(0, MAX_POSTS)
-}
+const post = Astro.props;
+const params = Astro.params
+// console.log()
+console.log('params', params.blogPost)
 
-const relatedPosts = getRelatedPosts(post)
-
-const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const relatedPosts = post.data.relatedPosts;
 
 const disqusEnabled = disqusConfig.enabled
+
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
+// post.data.description = 'getPostDescription(post)'
 ---
 
 <BlogPost

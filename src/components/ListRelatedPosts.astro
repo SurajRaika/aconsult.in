@@ -3,10 +3,13 @@ import type { CollectionEntry } from 'astro:content'
 
 import { cn } from '@/utils'
 import { Image } from 'astro:assets'
+import { getLocaleFromUrl } from '../i18n/utilities'
+import { getRelativePostPath } from '../utilities/getPostPath'
 
 type Props = {
 	posts: CollectionEntry<'blog'>[]
 }
+const Lang = getLocaleFromUrl(Astro.url.pathname);
 
 const { posts } = Astro.props
 ---
@@ -28,7 +31,7 @@ const { posts } = Astro.props
 							/>
 						</div>
 						<header class='flex justify-center items-center'>
-							<a class='font-medium  hover:underline' href={`/post/${post.slug}/`}>
+							<a class='font-medium  hover:underline' href={`/${getRelativePostPath(Lang, 'blog', post.slug, false)}`}>
 								{post.data.title}
 							</a>
 						</header>

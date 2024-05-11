@@ -8,13 +8,9 @@ import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
 import ToggleLanguage from './ToggleLanguage.astro'
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLocaleFromUrl } from '../i18n/utilities'
 
-// const {  currentLang } = Astro.props
-const {  currentLang } = Astro.props
-
-console.log(currentLang,"SDSDSDS");
-const Lang=currentLang || 'en';
-console.log(Lang)
+const Lang = getLocaleFromUrl(Astro.url.pathname);
 // ADD YOUR SOCIAL NETWORKS HERE
 // const SOCIALNETWORKS = [
 // 	{
@@ -57,12 +53,12 @@ console.log(Lang)
 					<HeaderLink href={getRelativeLocaleUrl(Lang, "about")} class='flex items-center gap-1 text-2xl md:text-base'>
 						About
 					</HeaderLink><HeaderLink
-					href={getRelativeLocaleUrl(Lang, "E-Mitra")}
+					href={getRelativeLocaleUrl(Lang, "e-mitra")}
 						class='flex items-center gap-1 text-2xl md:text-base'
 					>
 						E-Mitra
 					</HeaderLink><HeaderLink
-						href='/tags'
+						href='/software-fix'
 						class='flex items-center gap-1 text-2xl md:text-base'
 					>
 						Software Issue
@@ -88,7 +84,7 @@ console.log(Lang)
 
 		<div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'>
 			<div>
-				<!-- <Search /> -->
+				<Search />
 			</div>
 			<ToggleTheme />
 			<!-- <ToggleLanguage /> -->

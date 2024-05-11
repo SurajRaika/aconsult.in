@@ -185,9 +185,9 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
-"astro copy 2.mdx": {
-	id: "astro copy 2.mdx";
-  slug: "astro-copy-2";
+"Thats-How-OBC-Candidate-Can-Apply-From-Home-For-RPF-Constable--SI-Recruitment-2024.mdx": {
+	id: "Thats-How-OBC-Candidate-Can-Apply-From-Home-For-RPF-Constable--SI-Recruitment-2024.mdx";
+  slug: "thats-how-obc-candidate-can-apply-from-home-for-rpf-constable--si-recruitment-2024";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
@@ -199,13 +199,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"astro copy 4.mdx": {
-	id: "astro copy 4.mdx";
-  slug: "astro-copy-4";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
 "astro.mdx": {
 	id: "astro.mdx";
   slug: "astro";
@@ -213,9 +206,9 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"create-astro-component.mdx": {
-	id: "create-astro-component.mdx";
-  slug: "create-astro-component";
+"gj/hindidf.mdx": {
+	id: "gj/hindidf.mdx";
+  slug: "gj/hindidf";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
@@ -227,23 +220,9 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"hn/hindidf copy.mdx": {
-	id: "hn/hindidf copy.mdx";
-  slug: "hn/hindidf-copy";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"hn/hindidf.mdx": {
-	id: "hn/hindidf.mdx";
-  slug: "hn/hindidf";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"macbook.mdx": {
-	id: "macbook.mdx";
-  slug: "macbook";
+"hn/विंडोज.mdx": {
+	id: "hn/विंडोज.mdx";
+  slug: "hn/विंडोज";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">

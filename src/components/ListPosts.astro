@@ -2,6 +2,16 @@
 import type { CollectionEntry } from 'astro:content'
 import PostCard from '@/components/PostCard'
 import { cn } from '@/utils'
+import { getRelativePostPath } from '../utilities/getPostPath'
+import { getLocaleFromUrl } from '../i18n/utilities'
+
+const param=Astro.params;
+const currentPath = Astro.url.pathname;
+
+const Lang = getLocaleFromUrl(currentPath);
+console.log("linst posts ", Lang);
+
+
 
 type Props = {
 	posts: CollectionEntry<'blog'>[]
@@ -25,7 +35,7 @@ const { posts, FirstBig = false } = Astro.props
 				<PostCard
 					id={post.id}
 					data={post.data}
-					slug={post.slug}
+					slug={`${getRelativePostPath(getLocaleFromUrl(post.slug), 'blog', post.slug, false)}`}
 					readTime={remarkPluginFrontmatter.minutesRead}
 				/>
 			)
